@@ -28,4 +28,29 @@ def addrecord(request):
     member.save()
     return HttpResponseRedirect(reverse('index'))
 
+
+def delete(request, id):
+    member = Members.objects.get(id=id)
+    member.delete()
+    return HttpResponseRedirect(reverse('index'))
+
+
+def update(request, id):
+    member = Members.objects.get(id=id)
+    template = loader.get_template('update.html')
+    context = {
+        'mymember': member,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def updaterecord(request, id):
+    first = request.POST['first']
+    last = request.POST['last']
+    member = Members.objects.get(id=id)
+    member.firstname = first
+    member.lastname = last
+    member.save()
+
+    return HttpResponseRedirect(reverse('index'))
 # Create your views here.

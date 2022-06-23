@@ -1,7 +1,12 @@
-<h1>Members</h1>
+{% with str="Welcome to my first django website" %}
+
+<h1>{{ str }}</h1>
+
+{% endwith %}
 <table border="1">
   {% for x in mymembers %}
   <tr>
+    <td><a href="update/{{ x.id }}">{{ x.id }}</a></td>
     <td>{{ x.id }}</td>
     <td>{{ x.firstname }}</td>
     <td>{{ x.lastname }}</td>
